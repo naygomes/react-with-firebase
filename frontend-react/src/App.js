@@ -1,5 +1,6 @@
 import './App.css';
 import { useState } from 'react';
+import Title from './components/Title';
 
 function App() {
   // Hook de estado: atualiza o valor no DOM sempre que houver mudança
@@ -20,8 +21,12 @@ function App() {
     })
   }
 
+  const subtitle = "All the latest events in Marioland";
+
   return (
     <div className="App">
+      <Title title="Events in your area" subtitle={subtitle}/>
+      <Title title="This is a title test" subtitle="This is a subtitle test"/>
       <div>
         <button onClick={() => setShowEvents(!showEvents)}>{showEvents? 'Hide Events' : 'Show Events'}</button>
       </div>
