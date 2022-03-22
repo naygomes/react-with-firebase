@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Title from './components/Title';
 
 function App() {
@@ -26,7 +26,6 @@ function App() {
   return (
     <div className="App">
       <Title title="Events in your area" subtitle={subtitle}/>
-      <Title title="This is a title test" subtitle="This is a subtitle test"/>
       <div>
         <button onClick={() => setShowEvents(!showEvents)}>{showEvents? 'Hide Events' : 'Show Events'}</button>
       </div>
@@ -47,11 +46,11 @@ function App() {
         // A melhor forma de escolher uma chave é usar uma string que identifica unicamente um item da lista dentre os demais.
         // Quando você não possui nenhum ID estável para os itens renderizados, você pode usar o índice do item como chave em último recurso.
         // Não recomendamos o uso de índices para chave se a ordem dos itens pode ser alterada. Isso pode impactar de forma negativa o desempenho e poderá causar problemas com o estado do componente.
-        <div key={e.id}>
+        <React.Fragment key={e.id}>
           <h2>{ index } - {e.title}</h2>
           {/* Quando precisar passar um parâmetro pra função, chame a função dessa forma */}
           <button onClick={() => handleClick(e.id)}>Delete event</button>
-        </div>
+        </React.Fragment>
       ))}
     </div>
   );
