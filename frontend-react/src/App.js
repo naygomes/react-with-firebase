@@ -5,6 +5,7 @@ import Modal from './components/Modal';
 
 function App() {
   // Hook de estado: atualiza o valor no DOM sempre que houver mudança
+  const [showModal, setShowModal] = useState(true);
   const [showEvents, setShowEvents] = useState(true);
   const [events, setEvents] = useState([
     { title: "Mario's birthday bash", id: 1 },
@@ -20,6 +21,10 @@ function App() {
         return event.id !== id;
       })
     })
+  }
+
+  const handleClose = () => {
+    setShowModal(false);
   }
 
   const subtitle = "All the latest events in Marioland";
@@ -53,12 +58,19 @@ function App() {
           <button onClick={() => handleClick(e.id)}>Delete event</button>
         </React.Fragment>
       ))}
-      <Modal>
-        { // Quando utilizamos o componente com tag abre/fecha, o que vem dentro da tag é o filho (children) desse componente
-        } 
-        <h2>10% Off Coupon Code!!</h2>
-        <p>Use the code NINJA10 at the checkout.</p>
-      </Modal>
+      { showModal && (
+        <Modal handleClose={handleClose}>
+          { // Quando utilizamos o componente com tag abre/fecha, o que vem dentro da tag é o filho (children) desse componente
+          }
+          <h2>Terms and Conditions</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In volutpat quam magna, eget hendrerit leo condimentum non. Nulla a nunc ut tortor iaculis elementum.
+            Etiam malesuada nisl non sapien tincidunt cursus. Morbi auctor gravida dui gravida consectetur. Integer fringilla velit sit amet luctus egestas.
+            Integer ornare tincidunt interdum. Nullam non magna justo. Nullam maximus neque enim, congue porttitor nulla finibus tempor.
+            Duis interdum odio eu est faucibus, sed elementum quam vehicula. Curabitur vehicula, enim sed varius rhoncus, sem ipsum hendrerit mi, vel aliquam risus felis ut nisi.
+            Nulla eu augue vitae lorem porttitor aliquam vel id quam.
+          </p>
+        </Modal>
+      )}
     </div>
   );
 }
