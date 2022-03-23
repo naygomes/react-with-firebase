@@ -5,7 +5,7 @@ import Modal from './components/Modal';
 
 function App() {
   // Hook de estado: atualiza o valor no DOM sempre que houver mudança
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   const [showEvents, setShowEvents] = useState(true);
   const [events, setEvents] = useState([
     { title: "Mario's birthday bash", id: 1 },
@@ -24,7 +24,7 @@ function App() {
   }
 
   const handleClose = () => {
-    setShowModal(false);
+    setShowModal(!showModal);
   }
 
   const subtitle = "All the latest events in Marioland";
@@ -58,7 +58,8 @@ function App() {
           <button onClick={() => handleClick(e.id)}>Delete event</button>
         </React.Fragment>
       ))}
-      { showModal && (
+
+      {showModal && (
         <Modal handleClose={handleClose}>
           { // Quando utilizamos o componente com tag abre/fecha, o que vem dentro da tag é o filho (children) desse componente
           }
@@ -71,6 +72,9 @@ function App() {
           </p>
         </Modal>
       )}
+      <div>
+        <button onClick={handleClose}>Terms and Conditions</button>
+      </div>
     </div>
   );
 }
