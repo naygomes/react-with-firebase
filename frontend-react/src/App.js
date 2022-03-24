@@ -53,7 +53,7 @@ function App() {
       )}
 
       {showModal && (
-        <Modal handleClose={handleClose} isSalesModal={false}>
+        <Modal handleClose={handleClose} isSalesModal={true}>
           { // Quando utilizamos o componente com tag abre/fecha, o que vem dentro da tag é o filho (children) desse componente
           }
           <h2>Terms and Conditions</h2>
