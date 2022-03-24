@@ -1,12 +1,13 @@
+import './Title.css';
 
 // Ao usar props, você pode fazer de duas maneiras: declarando a prop como foi feito abaixo:
 export default function Title(props) {
     return (
-        <>
+        <div className="title-block">
             <h1 className="title">{props.title}</h1>
             <br/>
             <h2 className="subtitle">{props.subtitle}</h2>
-        </>
+        </div>
     )
 }
 
