@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Title from './components/Title';
 import EventList from './components/EventList';
 import Modal from './components/Modal';
+import NewEventForm from './components/NewEventForm';
 
 function App() {
   // Hook de estado: atualiza o valor no DOM sempre que houver mudança
@@ -56,17 +57,11 @@ function App() {
         <Modal handleClose={handleClose} isSalesModal={true}>
           { // Quando utilizamos o componente com tag abre/fecha, o que vem dentro da tag é o filho (children) desse componente
           }
-          <h2>Terms and Conditions</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In volutpat quam magna, eget hendrerit leo condimentum non. Nulla a nunc ut tortor iaculis elementum.
-            Etiam malesuada nisl non sapien tincidunt cursus. Morbi auctor gravida dui gravida consectetur. Integer fringilla velit sit amet luctus egestas.
-            Integer ornare tincidunt interdum. Nullam non magna justo. Nullam maximus neque enim, congue porttitor nulla finibus tempor.
-            Duis interdum odio eu est faucibus, sed elementum quam vehicula. Curabitur vehicula, enim sed varius rhoncus, sem ipsum hendrerit mi, vel aliquam risus felis ut nisi.
-            Nulla eu augue vitae lorem porttitor aliquam vel id quam.
-          </p>
+          <NewEventForm />
         </Modal>
       )}
       <div className='terms-conditions'>
-        <button onClick={handleClose}>Terms and Conditions</button>
+        <button onClick={handleClose}>Add New Event</button>
       </div>
     </div>
   );
