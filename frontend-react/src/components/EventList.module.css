@@ -1,0 +1,21 @@
+/* Módulos de classes servem para que um determinado estilo seja aplicado apenas no componente que usar tal módulo.
+   ou seja, diferente das outras formas de implementação de estilos, com o módulo o estilo será restrito apenas a quem usá-lo,
+   mesmo que em outro componente possua classes com o mesmo nome.
+   
+   O que acontece é que, ao compilar, o módulo cria uma classe com nome único e a renomeia, logo aquela classe só existirá naquele componente.
+   
+   Essa regra do módulo só funciona com seletores do tipo classe e id.
+   */
+
+.card {
+    border: 1px solid #eee;
+    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    max-width: 400px;
+    margin: 20px auto;
+    border-radius: 4px;
+}
+
+.card button {
+    background-color: #555;
+}
