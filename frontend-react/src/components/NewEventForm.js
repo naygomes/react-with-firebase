@@ -14,8 +14,20 @@ export default function NewEventForm() {
         setDate('');
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const event = {
+            title: title,
+            date: date,
+            id: Math.floor(Math.random() * 10000)
+        }
+        console.log(event);
+        resetForm();
+    }
+
     return (
-        <form className="new-event-form">
+        <form className="new-event-form" onSubmit={handleSubmit}>
             {/* Esse atributo (htmlFor) é o equivalente ao "for" do HTML, que faz um link de qual input pertence esta label. */}
             <label>
                 <span>Event Title:</span>
@@ -35,9 +47,7 @@ export default function NewEventForm() {
                 />
             </label>
 
-            <button tpe="submit">Submit</button>
-            <p>{title} - {date}</p>
-            <p onClick={resetForm}>Reset form</p>
+            <button>Submit</button>
         </form>
     )
 }
