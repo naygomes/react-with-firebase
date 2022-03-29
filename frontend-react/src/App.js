@@ -9,11 +9,14 @@ function App() {
   // Hook de estado: atualiza o valor no DOM sempre que houver mudança
   const [showModal, setShowModal] = useState(false);
   const [showEvents, setShowEvents] = useState(true);
-  const [events, setEvents] = useState([
-    { title: "Mario's birthday bash", id: 1 },
-    { title: "Luigi's live stream", id: 2 },
-    { title: "Race on moo moo farm", id: 3 },
-  ])
+  const [events, setEvents] = useState([])
+
+  const addEvent = (event) => {
+    setEvents((prevEvents) => {
+      return [...prevEvents, event];
+    })
+    setShowModal(false);
+  }
 
   const handleClick = (id) => {
     // Usa-se o prevEvents quando queremos garantir que os dados serão atualizados quando o filtramos.
@@ -23,10 +26,6 @@ function App() {
         return event.id !== id;
       })
     })
-  }
-
-  const handleClose = () => {
-    setShowModal(!showModal);
   }
 
   const subtitle = "All the latest events in Marioland";
@@ -54,14 +53,14 @@ function App() {
       )}
 
       {showModal && (
-        <Modal handleClose={handleClose} isSalesModal={true}>
+        <Modal isSalesModal={true}>
           { // Quando utilizamos o componente com tag abre/fecha, o que vem dentro da tag é o filho (children) desse componente
           }
-          <NewEventForm />
+          <NewEventForm addEvent={addEvent} />
         </Modal>
       )}
       <div className='terms-conditions'>
-        <button onClick={handleClose}>Add New Event</button>
+        <button onClick={() => setShowModal(true)}>Add New Event</button>
       </div>
     </div>
   );
