@@ -1,14 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 // O bom de fazer hooks customizadas é que você consegue reutilizá-las em outros componentes
-export const useFetch = (url) => {
+export const useFetch = (url, _options) => {
     const [data, setData] = useState(null);
     const [isPending, setIsPending] = useState(false);
     const [error, setError] = useState(null);
 
+    // Usamos useRef para envolver um argumento do tipo objeto/array o qual é uma dependência do useEffect
+    const options = useRef(_options).current;
+
     // É sempre uma boa prática quando você usar o useEffect, se estiver fazendo algo assíncrono,
     // retornar o método cleanup para abortar a request
     useEffect(() => {
+        console.log(options)
         const controller = new AbortController();
 
         const fetchData = async () => {
@@ -41,9 +45,9 @@ export const useFetch = (url) => {
         fetchData()
 
         return () => {
-            controller.abort();
+             controller.abort();
         }
-    }, [url])
+    }, [url, options])
 
 
     //sempre que você tem um hook personalizado, terá retorno na função, geralmente um array de informações
