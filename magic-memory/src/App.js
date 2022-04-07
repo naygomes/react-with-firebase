@@ -17,7 +17,7 @@ function App() {
   const [choiceOne, setChoiceOne] = useState(null);
   const [choiceTwo, setChoiceTwo] = useState(null);
 
-  //shuffle cards
+  //embaralhaando cards
   const shuffleCards = () => {
     const shuffleCards = [...cardImages, ...cardImages]
       .sort(() => Math.random() - 0.5)
@@ -27,9 +27,26 @@ function App() {
     setTurns(0);
   }
 
+  // Manipulando escolha dos cards
   const handleChoice = (card) => {
-    choiceOne? setChoiceTwo(card) : setChoiceTwo(card);
+    choiceOne? setChoiceTwo(card) : setChoiceOne(card);
   }
+
+  // Resetando rodada
+  const resetTurn = () => {
+    setChoiceOne(null);
+    setChoiceTwo(null);
+    setTurns(prevTurns => prevTurns + 1);
+    console.log(turns);
+  }
+
+  // Detectando dois cards virados numa rodada e comparando-os
+  useEffect(() => {
+    if (choiceOne && choiceTwo) {
+      choiceOne.src === choiceTwo.src ? console.log("cards are equal") : console.log("cards are NOT equal");
+      resetTurn();
+    }
+  }, [choiceOne, choiceTwo])
 
   return (
     <div className="App">
