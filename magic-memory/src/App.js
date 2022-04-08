@@ -3,12 +3,12 @@ import './App.css';
 import SingleCard from './components/SingleCard';
 
 const cardImages = [
-  { "src": "/img/helmet-1.png" },
-  { "src": "/img/potion-1.png" },
-  { "src": "/img/ring-1.png" },
-  { "src": "/img/scroll-1.png" },
-  { "src": "/img/shield-1.png" },
-  { "src": "/img/sword-1.png" },
+  { "src": "/img/helmet-1.png", "matched": false },
+  { "src": "/img/potion-1.png", "matched": false },
+  { "src": "/img/ring-1.png", "matched": false },
+  { "src": "/img/scroll-1.png", "matched": false },
+  { "src": "/img/shield-1.png", "matched": false },
+  { "src": "/img/sword-1.png", "matched": false },
 ]
 
 function App() {
@@ -37,16 +37,27 @@ function App() {
     setChoiceOne(null);
     setChoiceTwo(null);
     setTurns(prevTurns => prevTurns + 1);
-    console.log(turns);
   }
 
   // Detectando dois cards virados numa rodada e comparando-os
   useEffect(() => {
     if (choiceOne && choiceTwo) {
-      choiceOne.src === choiceTwo.src ? console.log("cards are equal") : console.log("cards are NOT equal");
+      if (choiceOne.src === choiceTwo.src) {
+        setCards(prevCards => {
+          return prevCards.map(card => {
+            if (card.src == choiceOne.src) {
+              return {...card, matched: true};
+            } else {
+              return card;
+            }
+          })
+        })
+      }
       resetTurn();
     }
   }, [choiceOne, choiceTwo])
+
+  console.log(cards);
 
   return (
     <div className="App">
