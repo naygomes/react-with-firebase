@@ -29,7 +29,7 @@ function App() {
 
   // Manipulando escolha dos cards
   const handleChoice = (card) => {
-    choiceOne? setChoiceTwo(card) : setChoiceOne(card);
+    choiceOne ? setChoiceTwo(card) : setChoiceOne(card);
   }
 
   // Resetando rodada
@@ -37,6 +37,7 @@ function App() {
     setChoiceOne(null);
     setChoiceTwo(null);
     setTurns(prevTurns => prevTurns + 1);
+    console.log(turns)
   }
 
   // Detectando dois cards virados numa rodada e comparando-os
@@ -46,18 +47,18 @@ function App() {
         setCards(prevCards => {
           return prevCards.map(card => {
             if (card.src == choiceOne.src) {
-              return {...card, matched: true};
+              return { ...card, matched: true };
             } else {
               return card;
             }
           })
         })
+        resetTurn();
+      } else {
+        setTimeout(() => resetTurn(), 1000);
       }
-      resetTurn();
     }
   }, [choiceOne, choiceTwo])
-
-  console.log(cards);
 
   return (
     <div className="App">
@@ -70,6 +71,7 @@ function App() {
             handleChoice={handleChoice}
             key={card.id}
             card={card}
+            flipped={card === choiceOne || card === choiceTwo || card.matched}
           />
         ))}
       </div>
