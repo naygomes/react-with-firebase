@@ -1,7 +1,7 @@
 export default function Home() {
     return (
         <div>
-            <h2>Homepage</h2>
+            <h2>Home</h2>
             <p>Culpa nulla qui irure tempor commodo laborum magna Lorem pariatur nulla. 
                 Nulla cupidatat fugiat esse est laboris veniam ut labore aute culpa nostrud ut dolor sunt.
                 Pariatur eiusmod reprehenderit reprehenderit magna culpa duis et non.
