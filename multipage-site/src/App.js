@@ -1,5 +1,5 @@
 import './App.css'
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 //pages components
 import Home from './pages/Home';
@@ -14,15 +14,17 @@ function App() {
         <nav>
           <h1>My Articles</h1>
         </nav>
-        <Route path="/">
-          <Home />
-        </Route>
-        <Route path='/contact'>
-          <Contact />
-        </Route>
-        <Route path='/about'>
-          <About />
-        </Route>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path='/contact'>
+            <Contact />
+          </Route>
+          <Route path='/about'>
+            <About />
+          </Route>
+        </Switch>
       </BrowserRouter>
     </div>
   );
