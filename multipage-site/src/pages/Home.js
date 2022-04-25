@@ -1,14 +1,22 @@
+import { useFetch } from '../hooks/useFetch';
+
+// Styles
+import './Home.css';
+
 export default function Home() {
+    const { data: articles, isPending, error } = useFetch('http://localhost:3000/articles')
+
     return (
-        <div>
-            <h2>Home</h2>
-            <p>Culpa nulla qui irure tempor commodo laborum magna Lorem pariatur nulla. 
-                Nulla cupidatat fugiat esse est laboris veniam ut labore aute culpa nostrud ut dolor sunt.
-                Pariatur eiusmod reprehenderit reprehenderit magna culpa duis et non.
-                Excepteur excepteur in nostrud duis velit anim id dolor aute fugiat velit non deserunt.
-                Sint culpa incididunt nisi officia velit dolor dolor adipisicing minim amet.
-                Officia sunt duis culpa commodo voluptate et cillum duis. Amet do in veniam consequat quis dolore aliqua sunt.
-            </p>
+        <div className="home">
+            <h2>Articles</h2>
+            {isPending && <div>Loading...</div>}
+            {error && <div>{error}</div>}
+            {articles && articles.map(article => (
+                <div key={article.id} className="card">
+                    <h3>{article.title}</h3>
+                    <p>Written by {article.author}</p>
+                </div>
+            ))}
         </div>
     )
 }
