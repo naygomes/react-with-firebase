@@ -49,6 +49,18 @@
       "method": "bla bla bla\n",
       "cookingTime": "22 minutes",
       "id": "5kc0aS8"
+    },
+    {
+      "title": "Rice",
+      "ingredients": [
+        "rice",
+        "water",
+        "salt",
+        "garlic"
+      ],
+      "method": "put the rice on the hot water and that's it.",
+      "cookingTime": "25 minutes",
+      "id": "DL3P_Jg"
     }
   ]
 }
